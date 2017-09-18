@@ -1,0 +1,9 @@
+<% if(user_id){ %>
+  <p>User: <%= user_id %></p>
+  <form action="/logout" method='POST'>
+    <input type="submit" value='Logout'>
+  </form>
+<% } else {%>
+  <a href="/login">Log in</a>
+  <a href="/register">Register</a>
+<% } %>

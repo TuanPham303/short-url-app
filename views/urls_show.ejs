@@ -1,0 +1,13 @@
+<body>
+  <% include ./partials/_header.ejs %>
+  <p><a href="<%= urls[url].longURL %>"><%= `http://localhost:8080/${url}` %></a> -> <%= urls[url].longURL %></p>
+  <form action="/urls/<%= url %>/delete" method="POST">
+    <button type='submit'>delete</button>
+  </form>
+  <form action="/urls/<%= url %>/update" method="POST">
+    <label for="longURL">Update URL:</label>
+    <input id="longURL" type="text" name="longURL" value="http://www." style="width: 300px">
+    <input type="submit" value="Update">
+  </form>
+  <a href="/">Done Editing</a>
+</body>

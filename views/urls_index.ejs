@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+</head>
+<body>
+  <% include ./partials/_header.ejs %>
+  <h1>TINY APP</h1>
+  <% if(user_id){ %>
+    <a href="/urls/new">Create new short url</a>
+    <div>
+    <p>List of urls:</p>
+    <ul>
+      <% for(let url in urls){ %>
+        <% if(urls[url].owner === user_id){ %>
+          <li>
+            <a href="<%= urls[url].longURL %>"><%= `http://localhost:8080/${url}` %></a> -> <%= urls[url].longURL %> 
+              <form action="/urls/<%= url %>" method='GET'>
+                <button type='submit'>Edit</button>
+              </form>
+            <p>Created on: <%= urls[url].createdTime %> </p>
+            <% if(urls[url].updatedTime){ %> 
+              <p>Updated on: <%= urls[url].updatedTime %></p>
+            <% } %>
+          </li>
+        <% } %>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <p>List of all the urls:</p>
+    <ul>
+      <% for(let url in urls){ %>
+        <li>
+          <a href="<%= urls[url].longURL %>"><%= `http://localhost:8080/${url}` %></a> -> <%= urls[url].longURL %> 
+          <p>Created on: <%= urls[url].createdTime %> </p>
+          <% if(urls[url].updatedTime){ %> 
+            <p>Updated on: <%= urls[url].updatedTime %></p>
+          <% } %>
+        </li>
+      <% } %>
+    </ul>
+  <% } %>  
+  </div>
+</body>
+</html>
